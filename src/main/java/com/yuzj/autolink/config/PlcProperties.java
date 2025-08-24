@@ -23,7 +23,7 @@ public class PlcProperties {
     /**
      * PLC设备IP地址
      */
-    private String host = "192.168.0.1";
+    private String host = "172.0.0.1";
 
     /**
      * PLC端口号

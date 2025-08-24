@@ -1,5 +1,6 @@
 package com.yuzj.autolink.plc.service;
 
+import com.yuzj.autolink.config.PlcProperties;
 import com.yuzj.autolink.exception.PlcConnectionException;
 import com.yuzj.autolink.exception.PlcReadException;
 import com.yuzj.autolink.exception.PlcWriteException;
@@ -19,7 +20,7 @@ public interface PlcService {
      *
      * @throws PlcConnectionException 连接异常
      */
-    void connect() throws PlcConnectionException;
+    void connect(PlcProperties config) throws PlcConnectionException;
 
     /**
      * 断开PLC连接

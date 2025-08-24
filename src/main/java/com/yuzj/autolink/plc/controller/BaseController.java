@@ -55,6 +55,7 @@ public class BaseController {
         dataMonitorService.startMonitoring(enabledTags);
         // 初始化图表系列
         dataChart.getData().clear();
+
         chartSeries.clear();
 
         for (PlcTagModel tag : enabledTags) {

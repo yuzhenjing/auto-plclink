@@ -27,7 +27,7 @@
             <ComboBox fx:id="protocolCombo" prefWidth="120" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
             <Label text="IP地址:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-alignment: center-right;"/>
-            <TextField fx:id="hostField" text="192.168.0.1" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <TextField fx:id="hostField" text="localhost" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
             <Label text="端口:" GridPane.columnIndex="2" GridPane.rowIndex="0"
                    style="-fx-alignment: center-right; -fx-padding: 0 0 0 10;"/>

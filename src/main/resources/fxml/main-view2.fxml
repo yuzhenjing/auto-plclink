@@ -32,7 +32,7 @@
                 <ComboBox fx:id="protocolCombo" prefWidth="90"/>
 
                 <Label text="IP:" style="-fx-alignment: center-right; -fx-padding: 0 0 0 5;"/>
-                <TextField fx:id="hostField" text="192.168.0.1" prefWidth="110"/>
+                <TextField fx:id="hostField" text="localhost" prefWidth="110"/>
 
                 <Label text="端口:" style="-fx-alignment: center-right; -fx-padding: 0 0 0 5;"/>
                 <TextField fx:id="portField" text="102" prefWidth="55"/>

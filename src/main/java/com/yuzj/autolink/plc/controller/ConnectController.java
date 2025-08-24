@@ -60,10 +60,10 @@ public class ConnectController extends BaseController {
 
             PlcProperties config = buildConnectionConfig();
 
-            plcService.connect();
+            plcService.connect(config);
 
             // 开始监控配置的产品
-            startMonitoringConfiguredTags();
+//            startMonitoringConfiguredTags();
 
             connectButton.setDisable(true);
 
