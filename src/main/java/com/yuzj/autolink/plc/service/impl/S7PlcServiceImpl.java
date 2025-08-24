@@ -14,8 +14,11 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author yuzj002
+ */
 @Service
-public class S7PlcOperatorService implements PlcService {
+public class S7PlcServiceImpl implements PlcService {
 
     private PlcProperties config;
     private S7Connector connector;
@@ -163,15 +166,5 @@ public class S7PlcOperatorService implements PlcService {
         for (Map.Entry<String, Object> entry : values.entrySet()) {
             write(entry.getKey(), entry.getValue());
         }
-    }
-
-    @Override
-    public PlcProperties getConfig() {
-        return config;
-    }
-
-    @Override
-    public void setConfig(PlcProperties config) {
-        this.config = config;
     }
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.yuzj.autolink.plc.controller.ConnectController"
+      spacing="15" style="-fx-padding: 20;" VBox.vgrow="ALWAYS">
+
+    <!-- 连接控制区域 -->
+    <VBox style="-fx-padding: 20; -fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 2, 2);"
+          VBox.vgrow="ALWAYS">
+        <Label text="PLC 连接设置"
+               style="-fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-font-size: 18px; -fx-padding: 0 0 10 0;"/>
+
+        <GridPane hgap="15" vgap="15">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="NEVER"/>
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="150"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="NEVER"/>
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="150"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="NEVER"/>
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="80"/>
+            </columnConstraints>
+
+            <Label text="协议:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-alignment: center-right;"/>
+            <ComboBox fx:id="protocolCombo" prefWidth="120" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="IP地址:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-alignment: center-right;"/>
+            <TextField fx:id="hostField" text="192.168.0.1" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="端口:" GridPane.columnIndex="2" GridPane.rowIndex="0"
+                   style="-fx-alignment: center-right; -fx-padding: 0 0 0 10;"/>
+            <TextField fx:id="portField" text="102" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+            <Label text="机架:" GridPane.columnIndex="2" GridPane.rowIndex="1"
+                   style="-fx-alignment: center-right; -fx-padding: 0 0 0 10;"/>
+            <TextField fx:id="rackField" text="0" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+            <Label text="槽号:" GridPane.columnIndex="4" GridPane.rowIndex="0"
+                   style="-fx-alignment: center-right; -fx-padding: 0 0 0 10;"/>
+            <TextField fx:id="slotField" text="1" GridPane.columnIndex="5" GridPane.rowIndex="0"/>
+
+            <Label text="超时(ms):" GridPane.columnIndex="4" GridPane.rowIndex="1"
+                   style="-fx-alignment: center-right; -fx-padding: 0 0 0 10;"/>
+            <TextField fx:id="timeoutField" text="5000" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+        </GridPane>
+
+        <!-- 操作按钮区域 -->
+        <HBox spacing="15" alignment="CENTER_RIGHT" style="-fx-padding: 20 0 0 0;">
+            <Button fx:id="connectButton" text="连接PLC" onAction="#handleConnect"
+                    style="-fx-background-color: #4caf50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20; -fx-background-radius: 5;"/>
+
+            <Button text="测试连接" onAction="#handleTestConnection"
+                    style="-fx-background-color: #2196f3; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20; -fx-background-radius: 5;"/>
+
+            <Button fx:id="disconnectButton" text="断开连接" onAction="#handleDisconnect" disable="true"
+                    style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20; -fx-background-radius: 5;"/>
+
+        </HBox>
+    </VBox>
+
+    <!-- 连接状态提示 -->
+    <HBox style="-fx-padding: 10; -fx-background-color: #fff3e0; -fx-background-radius: 5; -fx-border-color: #ff9800; -fx-border-radius: 5;"
+          spacing="10">
+        <Label text="💡" style="-fx-font-size: 16px;"/>
+        <Label text="提示: 连接前请确认PLC设备已开启并处于可连接状态"
+               style="-fx-text-fill: #e65100; -fx-font-size: 12px;"/>
+    </HBox>
+</VBox>

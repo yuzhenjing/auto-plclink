@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.yuzj.autolink.plc.controller.AlarmController"
+      spacing="10" VBox.vgrow="ALWAYS">
+    <!-- 报警管理区域 -->
+    <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: white; -fx-background-radius: 5;"
+          VBox.vgrow="ALWAYS">
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="系统报警" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #2c3e50;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="确认报警" onAction="#handleAcknowledgeAlarms"/>
+            <Button text="清除历史" onAction="#handleClearAlarms"/>
+        </HBox>
+
+        <TableView fx:id="alarmTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn text="时间" prefWidth="150" fx:id="timeColumn"/>
+                <TableColumn text="类型" prefWidth="100" fx:id="alarmTypeColumn"/>
+                <TableColumn text="状态" prefWidth="90" fx:id="alarmStatusColumn"/>
+                <TableColumn text="描述" prefWidth="250" fx:id="alarmDescColumn"/>
+            </columns>
+        </TableView>
+    </VBox>
+</VBox>

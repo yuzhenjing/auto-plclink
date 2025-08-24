@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.yuzj.autolink.plc.controller.ReadWriteController"
+      spacing="10" VBox.vgrow="ALWAYS">
+
+    <!-- 读写操作区域 -->
+    <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: white; -fx-background-radius: 5;"
+          VBox.vgrow="ALWAYS">
+        <Label text="PLC 读写操作" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #2c3e50;"/>
+
+        <GridPane hgap="10" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="20"/>
+                <ColumnConstraints percentWidth="50"/>
+                <ColumnConstraints percentWidth="30"/>
+            </columnConstraints>
+
+            <Label text="地址:"/>
+            <TextField fx:id="readWriteAddressField" GridPane.columnIndex="1"/>
+            <Button text="读取" onAction="#handleRead" GridPane.columnIndex="2"/>
+
+            <Label text="值:" GridPane.rowIndex="1"/>
+            <TextField fx:id="readWriteValueField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Button text="写入" onAction="#handleWrite" GridPane.rowIndex="1"
+                    GridPane.columnIndex="2"/>
+
+            <Label text="数据类型:" GridPane.rowIndex="2"/>
+            <ComboBox fx:id="dataTypeCombo" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Region GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+        </GridPane>
+
+        <Label text="操作日志:" style="-fx-font-weight: bold;"/>
+        <TextArea fx:id="logArea" prefRowCount="8" style="-fx-font-family: monospace;"
+                  editable="false" focusTraversable="false" VBox.vgrow="ALWAYS"/>
+    </VBox>
+</VBox>

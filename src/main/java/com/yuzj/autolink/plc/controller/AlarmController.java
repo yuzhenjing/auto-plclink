@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,8 @@ import java.util.Map;
  * @author yuzj002
  */
 @Slf4j
-public class AlarmController extends ConnectController {
+@Controller
+public class AlarmController extends BaseController {
     // 报警管理组件
     @FXML
     protected TableView<AlarmRecord> alarmTable;

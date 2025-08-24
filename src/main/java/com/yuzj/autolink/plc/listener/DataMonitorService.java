@@ -1,7 +1,8 @@
-package com.yuzj.autolink.plc.service;
+package com.yuzj.autolink.plc.listener;
 
 import com.yuzj.autolink.domain.PlcDataRecord;
 import com.yuzj.autolink.domain.PlcTagModel;
+import com.yuzj.autolink.plc.service.PlcService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -18,6 +19,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * @author yuzj002
+ */
 @Slf4j
 @Service
 public class DataMonitorService {

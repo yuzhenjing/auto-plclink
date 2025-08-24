@@ -1,16 +1,14 @@
 package com.yuzj.autolink.plc.controller;
 
 import com.yuzj.autolink.domain.PlcTagModel;
-import com.yuzj.autolink.plc.service.DataMonitorService;
+import com.yuzj.autolink.plc.listener.DataMonitorService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.Resource;
@@ -32,6 +30,10 @@ public class BaseController {
     // 状态栏组件
     @FXML
     protected Label statusLabel;
+
+    @FXML
+    protected ComboBox<String> protocolCombo;
+
     // 图表组件
     @FXML
     protected LineChart<Number, Number> dataChart;
@@ -94,16 +96,30 @@ public class BaseController {
     }
 
     public void updateStatus(String text) {
-        statusLabel.setText(text);
-        log.debug("更新状态栏: {}", text);
+        if (statusLabel != null) {
+            statusLabel.setText(text);
+            log.debug("更新状态栏: {}", text);
+        } else {
+            log.debug("状态栏未初始化，无法更新状态: {}", text);
+        }
     }
 
     public void logMessage(String message) {
-        Platform.runLater(() -> {
-            String timestamp = LocalTime.now().toString();
-            logArea.appendText("[" + timestamp + "] " + message + "\n");
-            // 自动滚动到底部
-            logArea.setScrollTop(Double.MAX_VALUE);
-        });
+        if (logArea != null) {
+            Platform.runLater(() -> {
+                String timestamp = LocalTime.now().toString();
+                logArea.appendText("[" + timestamp + "] " + message + "\n");
+                // 自动滚动到底部
+                logArea.setScrollTop(Double.MAX_VALUE);
+            });
+        } else {
+            log.debug("日志区域未初始化，无法记录消息: {}", message);
+        }
     }
+
+    public void updateConnectionButtons(Button button, boolean connected) {
+        button.setDisable(connected);
+        log.debug("更新连接按钮状态: connected={}", connected);
+    }
+
 }

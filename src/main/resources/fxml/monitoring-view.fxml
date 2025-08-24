@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.yuzj.autolink.plc.controller.MonitoringController"
+      spacing="10" VBox.vgrow="ALWAYS">
+
+    <!-- 数据监控区域 -->
+    <VBox spacing="5" style="-fx-padding: 10; -fx-background-color: white; -fx-background-radius: 5;"
+          VBox.vgrow="ALWAYS">
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="实时数据监控" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="添加监控点" onAction="#handleAddTag"/>
+            <Button text="清除数据" onAction="#handleClearData"/>
+        </HBox>
+
+        <TableView fx:id="dataTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn text="产品名" prefWidth="120" resizable="false"/>
+                <TableColumn text="地址" prefWidth="120" resizable="false"/>
+                <TableColumn text="值" prefWidth="100" resizable="false"/>
+                <TableColumn text="数据类型" prefWidth="100" resizable="false"/>
+                <TableColumn text="质量" prefWidth="60" resizable="false"/>
+                <TableColumn text="时间戳" prefWidth="150"/>
+            </columns>
+        </TableView>
+
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Label text="刷新间隔(ms):"/>
+            <TextField fx:id="refreshIntervalField" text="100" prefWidth="60"/>
+            <Button text="应用" onAction="#handleApplyRefreshInterval"/>
+            <ToggleButton fx:id="autoRefreshToggle" text="自动刷新" selected="true"/>
+        </HBox>
+    </VBox>
+</VBox>

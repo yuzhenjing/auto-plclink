@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.yuzj.autolink.plc.controller.ConfigController"
+      spacing="10" VBox.vgrow="ALWAYS">
+    <!-- 系统管理区域 -->
+    <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: white; -fx-background-radius: 5;"
+          VBox.vgrow="ALWAYS">
+        <Label text="PLC 产品配置" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #2c3e50;"/>
+
+        <HBox spacing="10">
+            <Button text="导入配置" onAction="#handleImportConfig"/>
+            <Button text="导出配置" onAction="#handleExportConfig"/>
+            <Button text="保存配置" onAction="#handleSaveConfig"/>
+            <Button text="加载配置" onAction="#handleLoadConfig"/>
+        </HBox>
+
+        <TableView fx:id="configTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn text="名称" prefWidth="120"/>
+                <TableColumn text="地址" prefWidth="100"/>
+                <TableColumn text="数据类型" prefWidth="100"/>
+                <TableColumn text="描述" prefWidth="200"/>
+            </columns>
+        </TableView>
+    </VBox>
+</VBox>

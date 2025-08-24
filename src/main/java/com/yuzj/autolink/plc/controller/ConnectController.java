@@ -2,13 +2,13 @@ package com.yuzj.autolink.plc.controller;
 
 import com.yuzj.autolink.config.PlcProperties;
 import com.yuzj.autolink.plc.service.PlcService;
-import com.yuzj.autolink.plc.service.PlcServiceFactory;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
 
@@ -16,6 +16,7 @@ import javax.annotation.Resource;
  * @author yuzj002
  */
 @Slf4j
+@Controller
 public class ConnectController extends BaseController {
 
     // 连接控制组件
@@ -23,8 +24,7 @@ public class ConnectController extends BaseController {
     private TextField hostField;
     @FXML
     private TextField portField;
-    @FXML
-    public ComboBox<String> protocolCombo;
+
     @FXML
     private TextField rackField;
     @FXML
@@ -37,11 +37,20 @@ public class ConnectController extends BaseController {
     private Button disconnectButton;
     @FXML
     private Label connectionStatus;
-
     @Resource
-    public PlcServiceFactory plcServiceFactory;
-
     protected PlcService plcService;
+
+    @FXML
+    public void initialize() {
+
+        updateConnectionButtons(false);
+        // 初始化协议选择
+        protocolCombo.setItems(FXCollections.observableArrayList(
+                "S7", "MODBUS_TCP", "MODBUS_RTU", "OPC_UA"
+        ));
+        protocolCombo.getSelectionModel().selectFirst();
+
+    }
 
     @FXML
     private void handleConnect() {
@@ -51,14 +60,12 @@ public class ConnectController extends BaseController {
 
             PlcProperties config = buildConnectionConfig();
 
-            plcService = plcServiceFactory.createService(config);
-
             plcService.connect();
 
             // 开始监控配置的产品
             startMonitoringConfiguredTags();
 
-            updateConnectionButtons(true);
+            connectButton.setDisable(true);
 
             updateConnectionStatus(true, "已连接");
 
@@ -86,7 +93,8 @@ public class ConnectController extends BaseController {
                 plcService.disconnect();
             }
 
-            updateConnectionButtons(false);
+            connectButton.setDisable(false);
+
             updateConnectionStatus(false, "未连接");
 
             logMessage("已断开与PLC的连接");
@@ -109,14 +117,8 @@ public class ConnectController extends BaseController {
             updateConnectionStatus(null, "测试中...");
             log.info("开始测试PLC连接");
             PlcProperties config = buildConnectionConfig();
-            PlcService testService = plcServiceFactory.createService(config);
-            testService.connect();
-
             // 测试读取一个简单地址
-            if ("S7".equalsIgnoreCase(config.getProtocol())) {
-                testService.read("DB1.DBX0.0"); // 测试读取一个位
-            }
-
+            plcService.read("DB1.DBX0.0");
             updateStatus("连接测试成功");
             updateConnectionStatus(null, "测试成功");
             showInfoAlert("测试成功", "PLC连接测试成功");
@@ -134,30 +136,35 @@ public class ConnectController extends BaseController {
     }
 
 
+    private void updateConnectionStatus(Boolean connected, String text) {
+        // 添加空值检查
+        if (connectionStatus != null) {
+            connectionStatus.setText(text);
+
+            // 清除所有状态类
+            connectionStatus.getStyleClass().removeAll("connected", "disconnected", "connecting");
+
+            // 根据连接状态添加相应样式
+            if (connected == null) {
+                connectionStatus.getStyleClass().add("connecting");
+            } else if (connected) {
+                connectionStatus.getStyleClass().add("connected");
+            } else {
+                connectionStatus.getStyleClass().add("disconnected");
+            }
+
+            log.debug("更新连接状态显示: text={}, connected={}", text, connected);
+        } else {
+            log.warn("连接状态标签未初始化，无法更新显示: text={}, connected={}", text, connected);
+        }
+    }
+
+
     public void updateConnectionButtons(boolean connected) {
         connectButton.setDisable(connected);
         disconnectButton.setDisable(!connected);
         log.debug("更新连接按钮状态: connected={}", connected);
     }
-
-    private void updateConnectionStatus(Boolean connected, String text) {
-        connectionStatus.setText(text);
-
-        // 清除所有状态类
-        connectionStatus.getStyleClass().removeAll("connected", "disconnected", "connecting");
-
-        // 根据连接状态添加相应样式
-        if (connected == null) {
-            connectionStatus.getStyleClass().add("connecting");
-        } else if (connected) {
-            connectionStatus.getStyleClass().add("connected");
-        } else {
-            connectionStatus.getStyleClass().add("disconnected");
-        }
-
-        log.debug("更新连接状态显示: text={}, connected={}", text, connected);
-    }
-
 
     private PlcProperties buildConnectionConfig() throws NumberFormatException {
         PlcProperties config = new PlcProperties();

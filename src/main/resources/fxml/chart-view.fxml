@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.yuzj.autolink.plc.controller.ChartController"
+      spacing="10" VBox.vgrow="ALWAYS">
+    <!-- 图表区域 -->
+    <VBox spacing="5" style="-fx-padding: 10; -fx-background-color: white; -fx-background-radius: 5;"
+          VBox.vgrow="ALWAYS">
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="数据趋势图" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <ComboBox fx:id="chartTagSelector" promptText="选择监控点" prefWidth="150"/>
+            <Button text="添加图表" onAction="#handleAddChart"/>
+            <Button text="清除图表" onAction="#handleClearChart"/>
+        </HBox>
+
+        <LineChart fx:id="dataChart" VBox.vgrow="ALWAYS">
+            <xAxis>
+                <NumberAxis label="时间 (s)" forceZeroInRange="false"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="数值" forceZeroInRange="false"/>
+            </yAxis>
+        </LineChart>
+    </VBox>
+</VBox>
