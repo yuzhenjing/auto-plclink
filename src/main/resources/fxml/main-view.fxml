@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Rectangle?>
@@ -9,26 +8,27 @@
       fx:controller="com.yuzj.autolink.plc.control.MainControl"
       spacing="10" style="-fx-padding: 10; -fx-background-color: #f4f4f4;" VBox.vgrow="ALWAYS">
 
-    <!-- 标题栏 -->
+    <!-- 标题栏 - 商务蓝风格 -->
     <HBox spacing="15" alignment="CENTER_LEFT"
-          style="-fx-background-color: linear-gradient(to right, #2c3e50, #1a2530); -fx-padding: 12 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2);">
-        <Rectangle width="32" height="32" fill="#3498db" arcWidth="8" arcHeight="8"
-                   style="-fx-effect: dropshadow(gaussian, rgba(52,152,219,0.5), 8, 0, 0, 0);"/>
+          style="-fx-background-color: linear-gradient(to right, #1e3c72, #2a5298); -fx-padding: 12 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2); -fx-background-radius: 0 0 8 8;">
+        <Rectangle width="32" height="32" fill="#4a90e2" arcWidth="8" arcHeight="8"
+                   style="-fx-effect: dropshadow(gaussian, rgba(74,144,226,0.5), 8, 0, 0, 0);"/>
         <Label text="PLC 上位机控制系统"
                style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 1, 1);"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <Label text="状态:" style="-fx-text-fill: #bdc3c7; -fx-font-weight: bold; -fx-font-size: 14px;"/>
+        <Label text="状态:" style="-fx-text-fill: #a0c4f7; -fx-font-weight: bold; -fx-font-size: 14px;"/>
         <Label fx:id="connectionStatus" text="未连接"
-               style="-fx-text-fill: #e74c3c; -fx-font-weight: bold; -fx-font-size: 14px; -fx-padding: 4 12; -fx-background-color: rgba(231,76,60,0.15); -fx-background-radius: 12;">
+               style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-padding: 4 12; -fx-background-radius: 12;">
             <tooltip>
                 <Tooltip text="系统连接状态"/>
             </tooltip>
         </Label>
+
     </HBox>
 
-
-    <!-- 主要内容区域 -->
-    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+    <!-- 主要内容区域 - 优化的TabPane样式 -->
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS"
+             style="-fx-background-color: transparent; -fx-border-width: 0;">
 
         <!-- PLC连接模块 -->
         <Tab text="PLC连接">
@@ -62,13 +62,16 @@
     </TabPane>
 
     <!-- 状态栏 -->
-    <HBox spacing="10" style="-fx-padding: 5; -fx-background-color: #ecf0f1;">
-        <Label text="就绪" fx:id="statusLabel"/>
+    <HBox spacing="10"
+          style="-fx-padding: 5; -fx-background-color: #eef2f7; -fx-background-radius: 0 0 8 8; -fx-border-color: #d1d8e0; -fx-border-width: 1 0 0 0;">
+        <Label text="就绪" fx:id="statusLabel" style="-fx-text-fill: #4a5568; -fx-font-size: 12px;"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <Label text="数据点数:"/>
-        <Label fx:id="dataPointCountLabel" text="0"/>
-        <Label text="通信延迟:"/>
-        <Label fx:id="latencyLabel" text="0 ms"/>
+        <Label text="数据点数:" style="-fx-text-fill: #718096; -fx-font-size: 12px;"/>
+        <Label fx:id="dataPointCountLabel" text="0"
+               style="-fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 12px;"/>
+        <Label text="通信延迟:" style="-fx-text-fill: #718096; -fx-font-size: 12px; -fx-padding: 0 0 0 10;"/>
+        <Label fx:id="latencyLabel" text="0 ms"
+               style="-fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 12px;"/>
     </HBox>
 
     <stylesheets>

@@ -36,21 +36,17 @@ public class MainControl extends BaseControl {
 
     @EventListener
     public void handleConnectionStatusChange(PlcConnectStatusEvent event) {
-        updateMainConnectStatus(event.isConnected());
-    }
-
-    private void updateMainConnectStatus(boolean connected) {
-        String text = connected ? "已连接" : "未连接";
+        String text = event.isConnected() ? "已连接" : "未连接";
         connectionStatus.setText(text);
         // 清除所有状态类
         connectionStatus.getStyleClass().removeAll("connected", "disconnected", "connecting");
         // 根据连接状态添加相应样式
-        if (connected) {
+        if (event.isConnected()) {
             connectionStatus.getStyleClass().add("connected");
         } else {
             connectionStatus.getStyleClass().add("disconnected");
         }
-        log.debug("更新连接状态显示: text={}, connected={}", text, connected);
+        log.debug("更新连接状态显示: text={}, connected={}", text, event.isConnected());
     }
 
 }
