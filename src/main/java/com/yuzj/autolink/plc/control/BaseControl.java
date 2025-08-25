@@ -16,6 +16,27 @@ import java.time.LocalTime;
 @Slf4j
 public class BaseControl {
 
+    // 连接控制组件
+    @FXML
+    protected TextField hostField;
+    @FXML
+    protected TextField portField;
+    @FXML
+    protected TextField rackField;
+    @FXML
+    protected TextField slotField;
+    @FXML
+    protected TextField timeoutField;
+    @FXML
+    protected Label connectionStatus;
+    @FXML
+    protected Button connectButton;
+    @FXML
+    protected Button disconnectButton;
+
+    @FXML
+    protected ComboBox<String> protocolCombo;
+
     // 日志组件
     @FXML
     protected TextArea logArea;

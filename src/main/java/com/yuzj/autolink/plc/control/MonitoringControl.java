@@ -1,5 +1,6 @@
 package com.yuzj.autolink.plc.control;
 
+import com.yuzj.autolink.domain.PlcDataRecord;
 import com.yuzj.autolink.domain.PlcTagModel;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -21,7 +22,8 @@ public class MonitoringControl extends BaseControl {
 
     @FXML
     private TextField refreshIntervalField;
-
+    @FXML
+    private TableView<PlcDataRecord> dataTable;
 
     @FXML
     private void handleAddTag() {
