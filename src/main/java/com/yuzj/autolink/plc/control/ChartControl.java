@@ -1,6 +1,5 @@
 package com.yuzj.autolink.plc.control;
 
-import com.yuzj.autolink.domain.PlcTagModel;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
@@ -28,14 +27,7 @@ public class ChartControl extends BaseControl {
 
     @FXML
     public void initialize() {
-        tagConfigs.addAll(
-                new PlcTagModel("温度传感器", "DB10.DBW0", "INT", "车间温度传感器"),
-                new PlcTagModel("压力传感器", "DB10.DBW2", "INT", "管道压力传感器"),
-                new PlcTagModel("电机状态", "DB10.DBX4.0", "BOOL", "主电机运行状态"),
-                new PlcTagModel("流量计", "DB10.DBD6", "REAL", "液体流量计"),
-                new PlcTagModel("设备开关", "DB10.DBX10.0", "BOOL", "设备总开关"),
-                new PlcTagModel("运行速度", "DB10.DBD12", "REAL", "conveyor运行速度")
-        );
+
     }
 
     @FXML

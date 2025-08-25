@@ -1,6 +1,6 @@
 package com.yuzj.autolink.plc.control;
 
-import com.yuzj.autolink.domain.PlcTagModel;
+import com.yuzj.autolink.dao.model.PlcTagConfig;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class ConfigControl extends BaseControl {
     // 系统管理组件
     @FXML
-    private TableView<PlcTagModel> configTable;
+    private TableView<PlcTagConfig> configTable;
 
     @FXML
     protected void initialize() {

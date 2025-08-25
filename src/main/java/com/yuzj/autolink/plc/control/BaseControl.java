@@ -1,6 +1,6 @@
 package com.yuzj.autolink.plc.control;
 
-import com.yuzj.autolink.domain.PlcTagModel;
+import com.yuzj.autolink.dao.model.PlcTagConfig;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +15,12 @@ import java.time.LocalTime;
  */
 @Slf4j
 public class BaseControl {
-
+    // 日志组件
+    @FXML
+    protected TextArea logArea;
+    // 状态栏组件
+    @FXML
+    protected Label statusLabel;
     // 连接控制组件
     @FXML
     protected TextField hostField;
@@ -33,18 +38,10 @@ public class BaseControl {
     protected Button connectButton;
     @FXML
     protected Button disconnectButton;
-
     @FXML
     protected ComboBox<String> protocolCombo;
 
-    // 日志组件
-    @FXML
-    protected TextArea logArea;
-    // 状态栏组件
-    @FXML
-    protected Label statusLabel;
-
-    public final ObservableList<PlcTagModel> tagConfigs = FXCollections.observableArrayList();
+    public final ObservableList<PlcTagConfig> tagConfigs = FXCollections.observableArrayList();
 
     public void showInfoAlert(String title, String message) {
         showAlert(Alert.AlertType.INFORMATION, title, message);
@@ -89,10 +86,4 @@ public class BaseControl {
             log.debug("日志区域未初始化，无法记录消息: {}", message);
         }
     }
-
-    public void updateConnectionButtons(Button button, boolean connected) {
-        button.setDisable(connected);
-        log.debug("更新连接按钮状态: connected={}", connected);
-    }
-
 }

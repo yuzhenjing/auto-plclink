@@ -1,7 +1,7 @@
 package com.yuzj.autolink.plc.control;
 
-import com.yuzj.autolink.domain.PlcDataRecord;
-import com.yuzj.autolink.domain.PlcTagModel;
+import com.yuzj.autolink.dao.model.PlcDataRecord;
+import com.yuzj.autolink.dao.model.PlcTagConfig;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +27,7 @@ public class MonitoringControl extends BaseControl {
 
     @FXML
     private void handleAddTag() {
-        Dialog<PlcTagModel> dialog = new Dialog<>();
+        Dialog<PlcTagConfig> dialog = new Dialog<>();
         dialog.setTitle("添加监控点");
         dialog.setHeaderText("请输入产品信息");
 
@@ -69,23 +69,18 @@ public class MonitoringControl extends BaseControl {
         // 转换结果
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == addButtonType) {
-                return new PlcTagModel(
-                        nameField.getText(),
-                        addressField.getText(),
-                        typeCombo.getValue(),
-                        descField.getText()
-                );
+
             }
             return null;
         });
 
-        Optional<PlcTagModel> result = dialog.showAndWait();
+        Optional<PlcTagConfig> result = dialog.showAndWait();
         result.ifPresent(tagConfig -> {
             tagConfigs.add(tagConfig);
             updateChartTagSelector();
-            logMessage("添加了新监控点: " + tagConfig.getName());
+//            logMessage("添加了新监控点: " + tagConfig.getName());
             updateStatus("已添加监控点");
-            log.info("添加了新监控点: {}", tagConfig.getName());
+//            log.info("添加了新监控点: {}", tagConfig.getName());
         });
     }
 
@@ -102,30 +97,17 @@ public class MonitoringControl extends BaseControl {
 
     private void updateChartTagSelector() {
         ObservableList<String> tagNames = FXCollections.observableArrayList();
-        for (PlcTagModel tag : tagConfigs) {
+        for (PlcTagConfig tag : tagConfigs) {
             // 布尔值和字符串不适合图表显示
             String dataType = tag.getDataType();
             if (!"BOOL".equals(dataType) && !"STRING".equals(dataType)) {
-                tagNames.add(tag.getName());
+                tagNames.add(tag.getTagName());
             }
         }
 //        chartTagSelector.setItems(tagNames);
         log.debug("更新图表产品选择器，共有 {} 个可选项", tagNames.size());
     }
 
-    public void addExampleTagConfigs() {
-        tagConfigs.addAll(
-                new PlcTagModel("温度传感器", "DB10.DBW0", "INT", "车间温度传感器"),
-                new PlcTagModel("压力传感器", "DB10.DBW2", "INT", "管道压力传感器"),
-                new PlcTagModel("电机状态", "DB10.DBX4.0", "BOOL", "主电机运行状态"),
-                new PlcTagModel("流量计", "DB10.DBD6", "REAL", "液体流量计"),
-                new PlcTagModel("设备开关", "DB10.DBX10.0", "BOOL", "设备总开关"),
-                new PlcTagModel("运行速度", "DB10.DBD12", "REAL", "conveyor运行速度")
-        );
-
-        updateChartTagSelector();
-        log.info("添加了 {} 个示例产品配置", tagConfigs.size());
-    }
 
     @FXML
     private void handleApplyRefreshInterval() {
