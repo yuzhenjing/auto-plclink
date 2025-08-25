@@ -1,11 +1,15 @@
-
 package com.yuzj.autolink.plc.control;
 
 import com.yuzj.autolink.plc.event.PlcConnectStatusEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 /**
@@ -31,6 +35,7 @@ public class MainControl extends BaseControl {
         if (latencyLabel != null) {
             latencyLabel.setText("0 ms");
         }
+
         log.info("主控制器初始化完成");
     }
 
@@ -48,5 +53,4 @@ public class MainControl extends BaseControl {
         }
         log.debug("更新连接状态显示: text={}, connected={}", text, event.isConnected());
     }
-
 }

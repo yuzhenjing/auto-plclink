@@ -59,12 +59,4 @@
 
         </HBox>
     </VBox>
-
-    <!-- 连接状态提示 -->
-    <HBox style="-fx-padding: 10; -fx-background-color: #fff3e0; -fx-background-radius: 5; -fx-border-color: #ff9800; -fx-border-radius: 5;"
-          spacing="10">
-        <Label text="💡" style="-fx-font-size: 16px;"/>
-        <Label text="提示: 连接前请确认PLC设备已开启并处于可连接状态"
-               style="-fx-text-fill: #e65100; -fx-font-size: 12px;"/>
-    </HBox>
 </VBox>
