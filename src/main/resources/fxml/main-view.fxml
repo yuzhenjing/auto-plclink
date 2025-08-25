@@ -6,16 +6,20 @@
 <?import java.net.URL?>
 <VBox xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.yuzj.autolink.plc.controller.MainController"
+      fx:controller="com.yuzj.autolink.plc.control.MainControl"
       spacing="10" style="-fx-padding: 10; -fx-background-color: #f4f4f4;" VBox.vgrow="ALWAYS">
 
     <!-- 标题栏 -->
-    <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: linear-gradient(to right, #2c3e50, #1a2530); -fx-padding: 12 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2);">
-        <Rectangle width="32" height="32" fill="#3498db" arcWidth="8" arcHeight="8" style="-fx-effect: dropshadow(gaussian, rgba(52,152,219,0.5), 8, 0, 0, 0);"/>
-        <Label text="PLC 上位机控制系统" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 1, 1);"/>
+    <HBox spacing="15" alignment="CENTER_LEFT"
+          style="-fx-background-color: linear-gradient(to right, #2c3e50, #1a2530); -fx-padding: 12 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2);">
+        <Rectangle width="32" height="32" fill="#3498db" arcWidth="8" arcHeight="8"
+                   style="-fx-effect: dropshadow(gaussian, rgba(52,152,219,0.5), 8, 0, 0, 0);"/>
+        <Label text="PLC 上位机控制系统"
+               style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 1, 1);"/>
         <Region HBox.hgrow="ALWAYS"/>
         <Label text="状态:" style="-fx-text-fill: #bdc3c7; -fx-font-weight: bold; -fx-font-size: 14px;"/>
-        <Label fx:id="connectionStatus" text="未连接" style="-fx-text-fill: #e74c3c; -fx-font-weight: bold; -fx-font-size: 14px; -fx-padding: 4 12; -fx-background-color: rgba(231,76,60,0.15); -fx-background-radius: 12;">
+        <Label fx:id="connectionStatus" text="未连接"
+               style="-fx-text-fill: #e74c3c; -fx-font-weight: bold; -fx-font-size: 14px; -fx-padding: 4 12; -fx-background-color: rgba(231,76,60,0.15); -fx-background-radius: 12;">
             <tooltip>
                 <Tooltip text="系统连接状态"/>
             </tooltip>
@@ -28,7 +32,7 @@
 
         <!-- PLC连接模块 -->
         <Tab text="PLC连接">
-            <fx:include fx:id="connectionView" source="connection-view.fxml"/>
+            <fx:include fx:id="connectionView" source="connect-view.fxml"/>
         </Tab>
 
         <!-- 数据监控模块 -->

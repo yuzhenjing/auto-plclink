@@ -1,27 +1,20 @@
-package com.yuzj.autolink.plc.controller;
+package com.yuzj.autolink.plc.control;
 
 import com.yuzj.autolink.domain.PlcTagModel;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.annotation.Resource;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author yuzj002
  */
 @Slf4j
-public class BaseController {
+public class BaseControl {
 
     // 日志组件
     @FXML

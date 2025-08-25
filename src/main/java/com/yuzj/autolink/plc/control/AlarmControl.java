@@ -1,4 +1,4 @@
-package com.yuzj.autolink.plc.controller;
+package com.yuzj.autolink.plc.control;
 
 import com.yuzj.autolink.domain.AlarmRecord;
 import javafx.collections.FXCollections;
@@ -6,7 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +15,8 @@ import java.util.Map;
  * @author yuzj002
  */
 @Slf4j
-@Controller
-public class AlarmController extends BaseController {
+@Component
+public class AlarmControl extends BaseControl {
     // 报警管理组件
     @FXML
     protected TableView<AlarmRecord> alarmTable;

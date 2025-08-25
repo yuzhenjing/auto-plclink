@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <VBox xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.yuzj.autolink.plc.controller.ReadWriteController"
+      fx:controller="com.yuzj.autolink.plc.control.ReadWriteControl"
       spacing="10" VBox.vgrow="ALWAYS">
 
     <!-- 读写操作区域 -->

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <VBox xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.yuzj.autolink.plc.controller.ConfigController"
+      fx:controller="com.yuzj.autolink.plc.control.ConfigControl"
       spacing="10" VBox.vgrow="ALWAYS">
     <!-- 系统管理区域 -->
     <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: white; -fx-background-radius: 5;"

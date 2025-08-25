@@ -1,10 +1,8 @@
 
-// src/main/java/com/yuzj/autolink/plc/controller/MainController.java
-package com.yuzj.autolink.plc.controller;
+package com.yuzj.autolink.plc.control;
 
 import com.yuzj.autolink.dao.PlcDataRecordResoprist;
 import com.yuzj.autolink.domain.PlcDataRecord;
-import com.yuzj.autolink.domain.PlcTagModel;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,7 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Optional;
@@ -21,8 +19,8 @@ import java.util.Optional;
  * @author yuzj002
  */
 @Slf4j
-@Controller
-public class MainController extends BaseController {
+@Component
+public class MainControl extends BaseControl {
 
     //数据监控组件
     @FXML
@@ -39,15 +37,10 @@ public class MainController extends BaseController {
     @Resource
     private PlcDataRecordResoprist plcDataRecordResoprist;
 
-    private volatile int dataPointCount = 0;
-
-    @Resource
-    private MonitoringController monitoringController;
 
     @FXML
     public void initialize() {
         log.info("初始化主控制器");
-
 
         // 初始化表格
         initializeDataTable();

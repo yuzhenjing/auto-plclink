@@ -1,4 +1,4 @@
-package com.yuzj.autolink.plc.controller;
+package com.yuzj.autolink.plc.control;
 
 import com.yuzj.autolink.plc.service.PlcService;
 import javafx.collections.FXCollections;
@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
@@ -14,8 +14,8 @@ import javax.annotation.Resource;
  * @author yuzj002
  */
 @Slf4j
-@Controller
-public class ReadWriteController extends BaseController {
+@Component
+public class ReadWriteControl extends BaseControl {
     @FXML
     private ComboBox<String> dataTypeCombo;
     // 读写操作组件

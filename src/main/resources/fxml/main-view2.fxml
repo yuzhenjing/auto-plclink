@@ -8,7 +8,7 @@
 <?import java.net.URL?>
 <VBox xmlns="http://javafx.com/javafx/11.0.1"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.yuzj.autolink.plc.controller.MainController"
+      fx:controller="com.yuzj.autolink.plc.control.MainControl"
       spacing="10"
       style="-fx-padding: 10; -fx-background-color: #f4f4f4;" VBox.vgrow="ALWAYS">
 

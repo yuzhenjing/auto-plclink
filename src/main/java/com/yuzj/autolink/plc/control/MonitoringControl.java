@@ -1,4 +1,4 @@
-package com.yuzj.autolink.plc.controller;
+package com.yuzj.autolink.plc.control;
 
 import com.yuzj.autolink.domain.PlcTagModel;
 import javafx.application.Platform;
@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
@@ -16,12 +16,11 @@ import java.util.Optional;
  * @author yuzj002
  */
 @Slf4j
-@Controller
-public class MonitoringController extends BaseController {
+@Component
+public class MonitoringControl extends BaseControl {
 
     @FXML
     private TextField refreshIntervalField;
-
 
 
     @FXML

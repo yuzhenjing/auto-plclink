@@ -1,17 +1,17 @@
-package com.yuzj.autolink.plc.controller;
+package com.yuzj.autolink.plc.control;
 
 import com.yuzj.autolink.domain.PlcTagModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
 /**
  * @author yuzj002
  */
 @Slf4j
-@Controller
-public class ConfigController extends BaseController {
+@Component
+public class ConfigControl extends BaseControl {
     // 系统管理组件
     @FXML
     private TableView<PlcTagModel> configTable;
