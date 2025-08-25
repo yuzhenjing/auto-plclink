@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
-// 在主应用类中添加自动启动模拟器
+/**
+ * @author yuzj002
+ */ // 在主应用类中添加自动启动模拟器
 @Component
 @Slf4j
 public class S7SimulatorStarter {

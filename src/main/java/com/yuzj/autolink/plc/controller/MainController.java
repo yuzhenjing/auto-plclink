@@ -5,9 +5,7 @@ package com.yuzj.autolink.plc.controller;
 import com.yuzj.autolink.dao.PlcDataRecordResoprist;
 import com.yuzj.autolink.domain.PlcDataRecord;
 import com.yuzj.autolink.domain.PlcTagModel;
-import com.yuzj.autolink.plc.listener.DataMonitorService;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -24,22 +22,17 @@ import java.util.Optional;
  */
 @Slf4j
 @Controller
-public class MainController extends BaseController implements DataMonitorService.DataChangeListener {
+public class MainController extends BaseController {
 
     //数据监控组件
     @FXML
     private TableView<PlcDataRecord> dataTable;
 
-    // 系统管理组件
-    @FXML
-    private TableView<PlcTagModel> configTable;
-
     @FXML
     private Label dataPointCountLabel;
     @FXML
     private Label latencyLabel;
-    @FXML
-    private Label statusLabel;
+
     @FXML
     private Label connectionStatus;
 
@@ -55,34 +48,10 @@ public class MainController extends BaseController implements DataMonitorService
     public void initialize() {
         log.info("初始化主控制器");
 
-//        // 初始化协议选择
-//        protocolCombo.setItems(FXCollections.observableArrayList(
-//                "S7", "MODBUS_TCP", "MODBUS_RTU", "OPC_UA"
-//        ));
-//        protocolCombo.getSelectionModel().selectFirst();
 
         // 初始化表格
         initializeDataTable();
 
-//        initializeAlarmTable();
-
-        initializeConfigTable();
-
-        // 注册数据监听器
-        if (dataMonitorService != null) {
-            dataMonitorService.addDataChangeListener(this);
-        }
-
-        // 设置连接按钮状态
-//        updateConnectionButtons(false);
-
-        // 添加示例产品配置
-        if (monitoringController != null) {
-            monitoringController.addExampleTagConfigs();
-        }
-
-        // 初始化报警阈值
-//        initializeAlarmThresholds();
 
         // 初始化状态栏
         updateStatus("就绪");
@@ -213,51 +182,6 @@ public class MainController extends BaseController implements DataMonitorService
             dataTable.setItems(plcDataRecordResoprist.list());
             log.debug("数据表格初始化完成");
         }
-    }
-
-    private void initializeConfigTable() {
-        if (configTable != null) {
-            configTable.setItems(tagConfigs);
-            log.debug("配置表格初始化完成");
-        }
-    }
-
-    @Override
-    public void onDataChanged(PlcDataRecord record) {
-        Platform.runLater(() -> {
-            try {
-                // 更新数据点数
-                dataPointCount++;
-                if (dataPointCountLabel != null) {
-                    dataPointCountLabel.setText(String.valueOf(dataPointCount));
-                }
-
-                // 更新表格
-                updateDataTable(record);
-
-                // 更新图表（仅限数值型数据）
-                updateChartData(record);
-
-                // 检查报警条件
-                checkAlarms(record);
-
-            } catch (Exception e) {
-                log.error("处理数据变更时出错", e);
-                logMessage("处理数据变更时出错: " + e.getMessage());
-            }
-        });
-    }
-
-    private void updateDataTable(PlcDataRecord record) {
-        // 实现数据表更新逻辑
-    }
-
-    private void updateChartData(PlcDataRecord record) {
-        // 实现图表更新逻辑
-    }
-
-    private void checkAlarms(PlcDataRecord record) {
-        // 实现报警检查逻辑
     }
 
 

@@ -5,6 +5,7 @@ import com.yuzj.autolink.plc.service.PlcService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,6 @@ public class ConnectController extends BaseController {
     private TextField hostField;
     @FXML
     private TextField portField;
-
     @FXML
     private TextField rackField;
     @FXML
@@ -39,6 +39,8 @@ public class ConnectController extends BaseController {
     private Label connectionStatus;
     @Resource
     protected PlcService plcService;
+    @FXML
+    protected ComboBox<String> protocolCombo;
 
     @FXML
     public void initialize() {
@@ -62,8 +64,6 @@ public class ConnectController extends BaseController {
 
             plcService.connect(config);
 
-            // 开始监控配置的产品
-//            startMonitoringConfiguredTags();
 
             connectButton.setDisable(true);
 
@@ -88,7 +88,6 @@ public class ConnectController extends BaseController {
             updateStatus("正在断开连接...");
             log.info("开始断开PLC连接");
 
-            dataMonitorService.stopMonitoring();
             if (plcService != null && plcService.isConnected()) {
                 plcService.disconnect();
             }

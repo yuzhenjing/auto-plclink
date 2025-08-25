@@ -23,6 +23,7 @@ public class MonitoringController extends BaseController {
     private TextField refreshIntervalField;
 
 
+
     @FXML
     private void handleAddTag() {
         Dialog<PlcTagModel> dialog = new Dialog<>();
@@ -134,8 +135,6 @@ public class MonitoringController extends BaseController {
                 updateStatus("刷新间隔不能小于10ms");
                 return;
             }
-
-            dataMonitorService.setRefreshInterval(interval);
             logMessage("刷新间隔已设置为: " + interval + "ms");
             updateStatus("刷新间隔已更新");
             log.info("刷新间隔已设置为: {}ms", interval);

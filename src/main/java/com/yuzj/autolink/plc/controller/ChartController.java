@@ -1,10 +1,14 @@
 package com.yuzj.autolink.plc.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author yuzj002
@@ -15,6 +19,11 @@ public class ChartController extends BaseController {
 
     @FXML
     private ComboBox<String> chartTagSelector;
+    // 图表组件
+    @FXML
+    protected LineChart<Number, Number> dataChart;
+    // 图表系列
+    public final Map<String, XYChart.Series<Number, Number>> chartSeries = new ConcurrentHashMap<>();
 
     @FXML
     private void handleAddChart() {

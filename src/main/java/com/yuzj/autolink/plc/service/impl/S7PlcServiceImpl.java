@@ -10,8 +10,7 @@ import com.yuzj.autolink.exception.PlcConnectionException;
 import com.yuzj.autolink.exception.PlcReadException;
 import com.yuzj.autolink.exception.PlcWriteException;
 import com.yuzj.autolink.plc.service.PlcService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -20,11 +19,12 @@ import java.util.Map;
 /**
  * @author yuzj002
  */
+@Slf4j
 @Service
 public class S7PlcServiceImpl implements PlcService {
 
-    private static final Logger log = LoggerFactory.getLogger(S7PlcServiceImpl.class);
     private S7Connector connector;
+
     private S7Serializer serializer;
 
     @Override
@@ -63,14 +63,8 @@ public class S7PlcServiceImpl implements PlcService {
             if (connector == null) {
                 throw new PlcConnectionException("无法创建S7连接器实例");
             }
-
             log.debug("正在创建序列化器...");
             serializer = S7SerializerFactory.buildSerializer(connector);
-
-            if (serializer == null) {
-                throw new PlcConnectionException("无法创建S7序列化器");
-            }
-
             log.info("成功连接到S7 PLC: {}:{}", config.getHost(), config.getPort());
         } catch (PlcConnectionException e) {
             log.error("PLC连接异常: {}", e.getMessage());
@@ -155,7 +149,7 @@ public class S7PlcServiceImpl implements PlcService {
         } catch (com.github.s7connector.exception.S7Exception e) {
             log.error("S7协议错误: {} (地址: {})", e.getMessage(), address);
             // 对于测试连接，返回默认值而不是抛出异常
-            if (address.equals("DB1.DBX0.0")) {
+            if ("DB1.DBX0.0".equals(address)) {
                 log.info("返回默认测试值: false");
                 return false;
             }

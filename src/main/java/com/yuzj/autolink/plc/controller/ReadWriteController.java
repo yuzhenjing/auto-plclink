@@ -1,6 +1,7 @@
 package com.yuzj.autolink.plc.controller;
 
 import com.yuzj.autolink.plc.service.PlcService;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -25,6 +26,15 @@ public class ReadWriteController extends BaseController {
 
     @Resource
     private PlcService plcService;
+
+    @FXML
+    public void initialize() {
+        // 初始化数据类型选择
+        dataTypeCombo.setItems(FXCollections.observableArrayList(
+                "BOOL", "BYTE", "INT", "DINT", "REAL", "STRING"
+        ));
+        dataTypeCombo.getSelectionModel().selectFirst();
+    }
 
     @FXML
     private void handleRead() {
