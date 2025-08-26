@@ -35,8 +35,7 @@ public class MonitoringControl extends BaseControl {
     @FXML
     private ComboBox<String> dataTypeFilter;
 
-    @FXML
-    private TableView<PlcDataRecord> dataTable;
+
 
     @FXML
     private TableColumn<PlcDataRecord, String> productNameColumn;

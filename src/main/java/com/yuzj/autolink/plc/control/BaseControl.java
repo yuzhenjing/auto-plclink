@@ -1,5 +1,6 @@
 package com.yuzj.autolink.plc.control;
 
+import com.yuzj.autolink.dao.model.PlcDataRecord;
 import com.yuzj.autolink.dao.model.PlcTagConfig;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -40,6 +41,8 @@ public class BaseControl {
     protected Button disconnectButton;
     @FXML
     protected ComboBox<String> protocolCombo;
+    @FXML
+    protected TableView<PlcDataRecord> dataTable;
 
     public final ObservableList<PlcTagConfig> tagConfigs = FXCollections.observableArrayList();
 
