@@ -1,4 +1,3 @@
-// S7ClientHandler.java
 package com.yuzj.autolink.s7;
 
 import lombok.extern.slf4j.Slf4j;
@@ -9,17 +8,18 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+/**
+ * @author yuzj002
+ */
 @Slf4j
 public class S7ClientHandler implements Runnable {
 
     private final Socket clientSocket;
-    private final S7Memory memory;
     private final DataInputStream input;
     private final DataOutputStream output;
 
-    public S7ClientHandler(Socket clientSocket, S7Memory memory) throws IOException {
+    public S7ClientHandler(Socket clientSocket) throws IOException {
         this.clientSocket = clientSocket;
-        this.memory = memory;
         this.input = new DataInputStream(clientSocket.getInputStream());
         this.output = new DataOutputStream(clientSocket.getOutputStream());
     }
