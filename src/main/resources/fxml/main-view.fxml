@@ -61,18 +61,20 @@
         </Tab>
     </TabPane>
 
-    <!-- 状态栏 -->
-    <HBox spacing="10"
-          style="-fx-padding: 5; -fx-background-color: #eef2f7; -fx-background-radius: 0 0 8 8; -fx-border-color: #d1d8e0; -fx-border-width: 1 0 0 0;">
-        <Label text="就绪" fx:id="statusLabel" style="-fx-text-fill: #4a5568; -fx-font-size: 12px;"/>
+    <!-- 状态栏 - 企业级设计 -->
+    <HBox spacing="15"
+          style="-fx-padding: 8; -fx-background-color: #dfe6ef; -fx-background-radius: 0 0 10 10; -fx-border-color: #c2cdda; -fx-border-width: 1 0 0 0;">
+        <Label text="系统就绪" fx:id="statusLabel"
+               style="-fx-text-fill: #2c3e50; -fx-font-size: 13px; -fx-font-weight: bold;"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <Label text="数据点数:" style="-fx-text-fill: #718096; -fx-font-size: 12px;"/>
+        <Label text="数据点数:" style="-fx-text-fill: #34495e; -fx-font-size: 13px;"/>
         <Label fx:id="dataPointCountLabel" text="0"
-               style="-fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 12px;"/>
-        <Label text="通信延迟:" style="-fx-text-fill: #718096; -fx-font-size: 12px; -fx-padding: 0 0 0 10;"/>
+               style="-fx-text-fill: #2980b9; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+        <Label text="通信延迟:" style="-fx-text-fill: #34495e; -fx-font-size: 13px; -fx-padding: 0 0 0 15;"/>
         <Label fx:id="latencyLabel" text="0 ms"
-               style="-fx-text-fill: #2d3748; -fx-font-weight: bold; -fx-font-size: 12px;"/>
+               style="-fx-text-fill: #27ae60; -fx-font-weight: bold; -fx-font-size: 13px;"/>
     </HBox>
+
 
     <stylesheets>
         <URL value="@/static/styles/main.css"/>
